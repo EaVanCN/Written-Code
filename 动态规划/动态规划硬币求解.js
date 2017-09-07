@@ -1,34 +1,35 @@
 var coins = [1,3,5];
-// var n = 8;
-// var result = [];
-// for(var i = 0;i<=n;i++){
-//     if(i == 0){
-//         result[i] = 0;
-//     }else{
-//         for(var j = 0;j <coins.length; j++){
-//             if(i-coins[j] >= 0){
-//                 result[i] = Math.min(result[i-coins[j]] + 1);
-//             }
-//         }
-//     } 
-// }
-// for(var i = 0;i<=n;i++){
-//     console.log(result[i]);
-// }
-
-
-function getMinCoins(count){
-    if(count == 0) return 0;
-    var arr = [];
-    for(var j = 0;j <coins.length; j++){
-        if(count-coins[j] >= 0){
-            arr.push(getMinCoins(count-coins[j])+1);
-        } 
-    }
-    return Math.min.apply(null,arr);
+var n = 8;
+var result = [];
+for(var i = 0;i<=n;i++){
+    if(i == 0){
+        result[i] = 0;
+    }else{
+        for(var j = 0;j <coins.length; j++){
+            if(i-coins[j] >= 0){
+                result[i] = Math.min(result[i-coins[j]] + 1);
+            }
+        }
+    } 
+}
+for(var i = 0;i<=n;i++){
+    console.log(result[i]);
 }
 
-console.log(getMinCoins(8));
+
+
+// function getMinCoins(count){
+//     if(count == 0) return 0;
+//     var arr = [];
+//     for(var j = 0;j <coins.length; j++){
+//         if(count-coins[j] >= 0){
+//             arr.push(getMinCoins(count-coins[j])+1);
+//         } 
+//     }
+//     return Math.min.apply(null,arr);
+// }
+
+//console.log(getMinCoins(8));
 
 
 
