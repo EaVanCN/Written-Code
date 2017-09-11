@@ -23,14 +23,14 @@ function upstair(i){
     return arguments.callee(i-1) + arguments.callee(i-2);
 }
 
-//console.log(upstair(10));
+console.log(upstair(11));
 
-var n = parseInt(read_line());
-while(n > 0){
-    var i = parseInt(read_line());
-    print(upstair(i));
-    n--;
-}
+// var n = parseInt(read_line());
+// while(n > 0){
+//     var i = parseInt(read_line());
+//     print(upstair(i));
+//     n--;
+// }
 
 
 //试试加上缓存
