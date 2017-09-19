@@ -1,7 +1,7 @@
 var line = "10";
 
 
-function getAvg(line){
+function getAvg(line){  
     var num = parseInt(line);
     var AllNumsArr = [];
     for(var i = 2; i<num; i++){
