@@ -20,14 +20,16 @@ function getArr(array){                 //方法2
     })
     return result;
 }
-console.log(getArr(array).join(","));
+//console.log(getArr(array).join(","));
 
 
 
 
-var result = new Set(array);            //法3
-console.log([...result])
+var result = new Set(ar);            //法3
+//console.log([...result])
 
 
 
+
+var ar = [false, true, undefined, null, NaN, 0, 1, {}, {}, 'a', 'a', NaN];
 
