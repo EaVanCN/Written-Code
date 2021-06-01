@@ -7,7 +7,11 @@
 你从第 0 天开始吃糖果。
 你在吃完 所有 第 i - 1 类糖果之前，不能 吃任何一颗第 i 类糖果。
 在吃完所有糖果之前，你必须每天 至少 吃 一颗 糖果。
-请你构建一个布尔型数组 answer ，满足 answer.length == queries.length 。answer[i] 为 true 的条件是：在每天吃 不超过 dailyCapi 颗糖果的前提下，你可以在第 favoriteDayi 天吃到第 favoriteTypei 类糖果；否则 answer[i] 为 false 。注意，只要满足上面 3 条规则中的第二条规则，你就可以在同一天吃不同类型的糖果。
+请你构建一个布尔型数组 answer ，满足 answer.length == queries.length 。answer[i] 为 true 的条件是：
+在每天吃 不超过 dailyCapi 颗糖果的前提下，你可以在第 favoriteDayi 天吃到第 favoriteTypei 类糖果；
+否则 answer[i] 为 false 。
+
+注意，只要满足上面 3 条规则中的第二条规则，你就可以在同一天吃不同类型的糖果。
 
 请你返回得到的数组 answer 。
 
@@ -26,9 +30,6 @@
 输入：candiesCount = [5,2,6,4,1], queries = [[3,1,2],[4,10,3],[3,10,100],[4,100,30],[1,3,1]]
 输出：[false,true,true,false,false]
 
-来源：力扣（LeetCode）
-链接：https://leetcode-cn.com/problems/can-you-eat-your-favorite-candy-on-your-favorite-day
-著作权归领扣网络所有。商业转载请联系官方授权，非商业转载请注明出处。
  * 
  * 
  * 
@@ -38,6 +39,24 @@
  * @param {number[][]} queries
  * @return {boolean[]}
  */
- var canEat = function(candiesCount, queries) {
-
+var canEat = function(candiesCount, queries) {
+    const n = candiesCount.length;          // 先求一个前缀和
+    const sum = new Array(n).fill(0);
+    sum[0] = candiesCount[0];
+    for (let i = 1; i < n; ++i) {
+        sum[i] = sum[i - 1] + candiesCount[i];
+    }
+    let result = []
+    for(let i = 0; i<queries.length; i++){
+        let [favoriteTypei, favoriteDayi, dailyCapi] = queries[i];
+        let beforeCount = favoriteTypei > 0 ? sum[favoriteTypei-1] : 0
+        let days = Math.floor(beforeCount / dailyCapi);                               //最少天数
+        let finalDay = beforeCount + candiesCount[favoriteTypei]                     //最多天数
+        console.log(beforeCount, days, favoriteDayi, finalDay)
+        result.push(days <= favoriteDayi && favoriteDayi < finalDay);
+    }
+    return result
 };
+
+let val = canEat([16,38,8,41,30,31,14,45,3,2,24,23,38,30,31,17,35,4,9,42,28,18,37,18,14,46,11,13,19,3,5,39,24,48,20,29,4,19,36,11,28,49,38,16,23,24,4,22,29,35,45,38,37,40,2,37,8,41,33,8,40,27,13,4,33,5,8,14,19,35,31,8,8], [[43,1054,49]])
+console.log(val)
